@@ -30,14 +30,13 @@ for (let i = 0; i < slides.length; i++) {
 	dots.appendChild(displayDots);
 }
 
+const dotsHTML = document.querySelectorAll('.dot');
+let dotsList = Array.from(dotsHTML);
+console.log(dotsList);
+
 const imageDirectory = './assets/images/slideshow/';
 const imageSrc = document.querySelector('.banner-img');
 const slideDescription = document.querySelector('#banner>p')
-
-function changeSlide() {
-	imageSrc.src = imageDirectory + slides[currentSlide].image;
-	slideDescription.innerHTML = slides[currentSlide].tagLine;
-}
 
 // Defining left and right arrows
 const leftArrow = document.querySelector('.arrow_left');
@@ -61,5 +60,14 @@ rightArrow.addEventListener("click", () =>{
 	}
 });
 
-console.log(slides.length);
-
+function changeSlide() {
+	imageSrc.src = imageDirectory + slides[currentSlide].image;
+	slideDescription.innerHTML = slides[currentSlide].tagLine;
+	for (let i = 0; i < dotsList.length; i++){
+		if (i !== currentSlide) {
+			dotsList[i].classList.remove("dot_selected");
+		} else {
+			dotsList[i].classList.add("dot_selected");
+		}
+	}
+}
