@@ -21,7 +21,7 @@ const dotsCount = slides.length;
 let currentSlide = 0;
 
 // Looping "slides" array to add dot in each slide
-for (let i = 0; i < dotsCount; i++) {
+for (let i = 0; i < slides.length; i++) {
 	let displayDots = document.createElement("div");
 	displayDots.classList.add('dot');
 	if (i === currentSlide) {
@@ -35,14 +35,31 @@ const imageSrc = document.querySelector('.banner-img');
 const slideDescription = document.querySelector('#banner>p')
 
 function changeSlide() {
-	imageSrc.src = imageDirectory + slides[currentSlide++].image;
-	slideDescription.innerHTML = slides[currentSlide++].tagLine;
+	imageSrc.src = imageDirectory + slides[currentSlide].image;
+	slideDescription.innerHTML = slides[currentSlide].tagLine;
 }
 
 // Defining left and right arrows
 const leftArrow = document.querySelector('.arrow_left');
 const rightArrow = document.querySelector('.arrow_right');
 
-leftArrow.addEventListener("click", changeSlide, false);
-rightArrow.addEventListener("click", changeSlide, false);
+leftArrow.addEventListener("click", () =>{
+	if (currentSlide > 0) {
+		currentSlide--;
+		changeSlide();
+		console.log(currentSlide);
+	}
+});
+
+rightArrow.addEventListener("click", () =>{
+	if (currentSlide <= slides.length){
+		currentSlide++;
+		changeSlide();
+		console.log(currentSlide);
+	} else {
+		currentSlide = 0;
+	}
+});
+
+console.log(slides.length);
 
