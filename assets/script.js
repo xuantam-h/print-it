@@ -32,7 +32,6 @@ for (let i = 0; i < slides.length; i++) {
 
 const dotsHTML = document.querySelectorAll('.dot');
 let dotsList = Array.from(dotsHTML);
-console.log(dotsList);
 
 const imageDirectory = './assets/images/slideshow/';
 const imageSrc = document.querySelector('.banner-img');
@@ -47,16 +46,22 @@ leftArrow.addEventListener("click", () =>{
 		currentSlide--;
 		changeSlide();
 		console.log(currentSlide);
+	} else {
+		currentSlide = slides.length - 1;
+		changeSlide();
+		console.log(currentSlide);
 	}
 });
 
 rightArrow.addEventListener("click", () =>{
-	if (currentSlide <= slides.length){
+	if (currentSlide < slides.length - 1){
 		currentSlide++;
 		changeSlide();
 		console.log(currentSlide);
 	} else {
 		currentSlide = 0;
+		changeSlide();
+		console.log(currentSlide);
 	}
 });
 
